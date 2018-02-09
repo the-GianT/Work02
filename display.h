@@ -3,10 +3,10 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
-void plot( screen s, color c, int x, int y);
-void clear_screen( screen s);
-void save_ppm( screen s, char *file);
-void save_extension( screen s, char *file);
-void display( screen s);
+void plot(screen, color, int, int);
+void clear_screen(screen);
+void save_ppm(screen, char *);
+void save_extension(screen, char *);
+void display(screen);
 
 #endif
