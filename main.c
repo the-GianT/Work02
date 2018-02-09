@@ -41,7 +41,7 @@ int main() {
   c.red = 0;
   c.blue = MAX_COLOR;
   draw_line(357, 3, 357, 357, s, c); // bottom to top
-  draw_line(240, 385, 240, 85, s, c); // top to bottome
+  draw_line(240, 385, 240, 85, s, c); // top to bottom
 
   display(s);
   save_extension(s, "lines.png");
