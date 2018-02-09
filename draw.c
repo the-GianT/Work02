@@ -5,23 +5,29 @@
 #include "display.h"
 #include "draw.h"
 
-//Insert your line algorithm here
+/*======== void draw_line() ==========
+Inputs:   int x0
+         int y0
+         int x1
+         int y1
+         screen s
+         color c
+Returns:
+Draws a line of color c from pixel (x0, y0) to pixel (x1, y1), using Bresenham's
+Line Algorithm
+Gian
+====================*/
 void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
 
   // terms of line function f(x, y) = Ax + By + C
   int a;
   int b;
   
-  // printf("a: %d\nb: %d\n", a, b);
-  /*
-  float m = -a/b; // slope
-  printf("slope: %f\n", m);
-  */
   int x;
   int y;
   int d;
 
-  // Always draw from left to right
+  // Always draw from left to right.
   if (x0 > x1) { // perform swap
     int tmpx;
     int tmpy;
@@ -99,6 +105,6 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
 	d += 2 * a;
       }
     }
-  }
-}
+  } // end else statement
+} // end void draw_line()
 
