@@ -17,7 +17,8 @@ int main() {
 
   clear_screen(s);
 
-  draw_line(3, 3, 87, 42, s, c);
+  draw_line(3, 3, 87, 42, s, c); // octant 1
+  draw_line(24, 50, 48, 128, s, c); // octant 2
 
   display(s);
   save_extension(s, "lines.png");

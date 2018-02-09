@@ -7,8 +7,11 @@
 
 //Insert your line algorithm here
 void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
-  int a = y1 - y0; // delta y
-  int b = x0 - x1; // negative delta x
+
+  // terms of line function f(x, y) = Ax + By + C
+  int a;
+  int b;
+  
   // printf("a: %d\nb: %d\n", a, b);
   /*
   float m = -a/b; // slope
@@ -18,13 +21,30 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
   int y;
   int d;
 
+  // Always draw from left to right
+  if (x0 > x1) { // perform swap
+    int tmpx;
+    int tmpy;
+
+    tmpx = x0;
+    x0 = x1;
+    x1 = tmpx;
+
+    tmpy = y0;
+    y0 = y1;
+    y1 = tmpy;
+  }
+
+  a = y1 - y0; // delta y
+  b = x0 - x1; // negative delta x
+  x = x0;
+  y = y0;
+
   // if (0 <= m && m < 1) { // octant 1
   if (a >= 0) { // positive slope (or slope of zero)
     
     if (a < -b) { // octant 1
       // printf("Got here.\n");
-      x = x0;
-      y = y0;
       d = 2 * a + b; // equivalent to f(x+1, y+1/2)
       while (x <= x1) {
 	// printf("x: %d\n", x);
@@ -37,7 +57,17 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
 	d += 2 * a;
       }
     } else { // octant 2
-      /* insert implementation here */
+      d = a + 2 * b; // equivalent to f(x+1/2, y+1)
+      while (y <= y1) {
+	plot(s, c, x, y);
+	if (d < 0) {
+	  // if midpoint between the two pixels is to the right of the line
+	  x++;
+	  d += 2 * a;
+	}
+	y++;
+	d += 2 * b;
+      }
     }
   } else { // negative slope
     
