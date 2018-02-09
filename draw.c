@@ -44,10 +44,9 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
   if (a >= 0) { // positive slope (or slope of zero)
     
     if (a < -b) { // octant 1
-      // printf("Got here.\n");
-      d = 2 * a + b; // equivalent to f(x+1, y+1/2)
+      
+      d = 2 * a + b; // equivalent to f(x0+1, y0+1/2)
       while (x <= x1) {
-	// printf("x: %d\n", x);
 	plot(s, c, x, y);
 	if (d > 0) { // if midpoint between the two pixels is below the line
 	  y++;
@@ -57,7 +56,8 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
 	d += 2 * a;
       }
     } else { // octant 2
-      d = a + 2 * b; // equivalent to f(x+1/2, y+1)
+      
+      d = a + 2 * b; // equivalent to f(x0+1/2, y0+1)
       while (y <= y1) {
 	plot(s, c, x, y);
 	if (d < 0) {
@@ -70,11 +70,21 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
       }
     }
   } else { // negative slope
-    
-    if (a > b) { // octant 7
+
+    if (a < b) { // octant 7
       /* insert implementation here */
     } else { // octant 8
-      /* insert implementation here */
+      
+      d = 2 * a - b; // equivalent to f(x0+1, y0-1/2)
+      while (x <= x1) {
+	plot(s, c, x, y);
+	if (d < 0) { // if midpoint between the two pixels is below the line
+	  y--;
+	  d -= 2 * b;
+	}
+	x++;
+	d += 2 * a;
+      }
     }
   }
 }
