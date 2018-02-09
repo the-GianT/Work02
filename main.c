@@ -27,6 +27,8 @@ int main() {
   draw_line(70, 400, 270, 300, s, c); // octant 8
 
   // x0 > x1 (draw_line function must swap coordinates):
+  c.red = MAX_COLOR;
+  c.green = 0;
   draw_line(261, 40, 161, 340, s, c); // octant 3
   draw_line(264, 289, 164, 389, s, c); // slope of -1
   draw_line(194, 362, 75, 300, s, c); // octant 4
@@ -36,6 +38,8 @@ int main() {
   draw_line(186, 242, 86, 42, s, c); // octant 6
 
   // vertical lines (no change in x):
+  c.red = 0;
+  c.blue = MAX_COLOR;
   draw_line(357, 3, 357, 357, s, c); // bottom to top
   draw_line(240, 385, 240, 85, s, c); // top to bottome
 
