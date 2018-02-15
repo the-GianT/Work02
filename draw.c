@@ -51,7 +51,7 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
     if (a < -b) { // octant 1
       
       d = 2 * a + b; // equivalent to f(x0+1, y0+1/2)
-      while (x <= x1) {
+      while (x < x1) {
 	plot(s, c, x, y);
 	if (d > 0) { // if midpoint between the two pixels is below the line
 	  y++;
@@ -60,11 +60,12 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
 	x++;
 	d += 2 * a;
       }
+      plot(s, c, x1, y1);
       
     } else { // octant 2
       
       d = a + 2 * b; // equivalent to f(x0+1/2, y0+1)
-      while (y <= y1) {
+      while (y < y1) {
 	plot(s, c, x, y);
 	if (d < 0) {
 	  // if midpoint between the two pixels is to the left of the line
@@ -74,6 +75,7 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
 	y++;
 	d += 2 * b;
       }
+      plot(s, c, x1, y1);
     }
     
   } else { // negative slope
@@ -81,7 +83,7 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
     if (a < b) { // octant 7
       
       d = a - 2 * b; // equivalent to f(x0+1/2, y0-1)
-      while (y >= y1) {
+      while (y > y1) {
 	plot(s, c, x, y);
 	if (d > 0) {
 	  // if midpoint between the two pixels is to the left of the line
@@ -91,11 +93,12 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
 	y--;
 	d -= 2 * b;
       }
+      plot(s, c, x1, y1);
       
     } else { // octant 8
       
       d = 2 * a - b; // equivalent to f(x0+1, y0-1/2)
-      while (x <= x1) {
+      while (x < x1) {
 	plot(s, c, x, y);
 	if (d < 0) { // if midpoint between the two pixels is above the line
 	  y--;
@@ -104,7 +107,8 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
 	x++;
 	d += 2 * a;
       }
-    }
-  } // end else statement
+      plot(s, c, x1, y1);
+    } // end inner else statement
+  } // end outer else statement
 } // end void draw_line()
 
